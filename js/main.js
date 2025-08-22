@@ -1,4 +1,3 @@
-
 function main() {
 
 (function () {
@@ -75,6 +74,67 @@ function main() {
             effect: 'slideDown',  
             keyboardNav: true,                            
         });
+
+    // Animations with anime.js
+    anime({
+        targets: '.intro-text h1',
+        translateY: [-50, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: 500,
+        easing: 'easeOutExpo'
+    });
+
+    anime({
+        targets: '.intro-text p',
+        translateY: [50, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: 800,
+        easing: 'easeOutExpo'
+    });
+
+    anime({
+        targets: '.btn-custom',
+        translateY: [50, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: 1100,
+        easing: 'easeOutExpo'
+    });
+
+    // Header animation
+    var heroText = document.querySelector('.hero-text');
+    var nav = document.querySelector('#menu');
+    var navBrand = document.querySelector('.navbar-brand');
+
+    var heroTextPosition = heroText.getBoundingClientRect().top;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > heroTextPosition) {
+            if (!nav.classList.contains('scrolled')) {
+                nav.classList.add('scrolled');
+                navBrand.innerHTML = 'Misty Nest';
+                anime({
+                    targets: navBrand,
+                    color: '#4CAF50',
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        } else {
+            if (nav.classList.contains('scrolled')) {
+                nav.classList.remove('scrolled');
+                navBrand.innerHTML = '';
+                anime({
+                    targets: navBrand,
+                    color: '#fff',
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        }
+    });
 
 }());
 
